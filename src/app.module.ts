@@ -7,8 +7,8 @@ import { join } from 'path';
 @Module({
   imports: [
     AngularUniversalModule.forRoot({
-      viewsPath: join(process.cwd(), 'client/dist/app-client'),
-      bundle: require('./../client/dist/app-server/main.js')
+      viewsPath: join(process.cwd(), 'dist/app-client'),
+      bundle: require('../app-server/main.js')
     })
   ],
   controllers: [AppController],

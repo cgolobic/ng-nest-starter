@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IGreeting } from '../../../shared/interfaces/greeting';
+import { logMessage } from '../../../shared/utilities/logger';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private _http: HttpClient) {}
 
   ngOnInit() {
+    logMessage('app', 'creating app component...');
     this._http.get('http://localhost:3000/api/hello').subscribe((res: IGreeting) => this.greeting = res.greeting);
   }
 

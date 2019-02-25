@@ -6,12 +6,11 @@
   "license": "MIT",
   "scripts": {
     "server:build": "tsc -p tsconfig.build.json",
-    "build": "npm run server:build && npm run client:build:server",
+    "build": "rimraf dist && npm run server:build && npm run client:build:server",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/src/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",

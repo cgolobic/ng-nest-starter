@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "server:build": "tsc -p tsconfig.build.json",
-    "build": "rimraf dist && npm run server:build && npm run client:build:server",
+    "build": "rimraf dist && npm run server:build && npm run client:build",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
@@ -15,12 +15,11 @@
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "server:test": "ts-node node_modules/jasmine/bin/jasmine ./src/**/*.spec.ts",
     "ng": "cd client && ng",
-    "client:start": "cd client && ng serve",
-    "client:build": "cd client && ng build",
+    "client:start": "cd client && ng serve --proxy-config ./proxy.config.json",
     "client:test": "cd client && ng test",
     "client:lint": "cd client && ng lint",
     "client:e2e": "cd client && ng e2e",
-    "client:build:server": "cd client && ng run app-client:server && ng run app-client:build"
+    "client:build": "cd client && ng run app-client:server:production && ng run app-client:build:production"
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",
@@ -39,6 +38,7 @@
     "@nguniversal/express-engine": "^7.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.0",
     "core-js": "^2.5.4",
+    "dotenv": "^6.2.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
@@ -60,7 +60,6 @@
     "@types/node": "^10.7.1",
     "@types/supertest": "^2.0.5",
     "codelyzer": "~4.5.0",
-    "dotenv": "^6.2.0",
     "jasmine": "^3.3.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

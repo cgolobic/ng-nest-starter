@@ -10,9 +10,11 @@ export class ConfigService {
   };
 
   constructor() {
-    let env = process.env.NODE_ENV;
-    if (isDefinedAndNotNull(env)) {
+    let env = process.env.NODE_ENV || 'development';
+    if (isDefinedAndNotNull(env) && fs.existsSync(`${env}.env`)) {
       this._envConfig = dotenv.parse(fs.readFileSync(`${env}.env`));
+    } else {
+      this._envConfig = process.env;
     }
   }
 
